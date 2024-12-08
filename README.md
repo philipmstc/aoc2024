@@ -10,4 +10,4 @@ day 5 :star: :star:
 
 day 6 :star: :bug:
 
-day 7 
+day 7 :star:
