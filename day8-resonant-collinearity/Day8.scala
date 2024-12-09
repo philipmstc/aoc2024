@@ -15,13 +15,15 @@ object Day8 {
     uniqueAntennae.foreach(
       a => {
         val all: List[Cell[Tile]] = findAll(grid)(t=>t.display == a)
-        computeAntinodes(grid, all)
+        args(0) match 
+          case "1" => computeNextAntinodes(grid, all)
+          case "2" => computeAllAntinodes(grid, all)
       }
     )
     println(grid.map(row=>row.filter(t=>t.isAntinode).size).sum)
   }
 
-  def computeAntinodes(grid: List[List[Tile]], all: List[Cell[Tile]]): Unit = { 
+  def computeNextAntinodes(grid: List[List[Tile]], all: List[Cell[Tile]]): Unit = { 
     all.toSeq.combinations(2).map{case Seq(a,b) => (a,b)}.foreach((a,b) => {
       val xDiff = abs(a.x - b.x)
       val yDiff = abs(a.y - b.y)
@@ -39,6 +41,20 @@ object Day8 {
       }) 
       get(grid)(x2,y2).foreach(c => { 
         grid(c.y)(c.x).isAntinode = true
+      })
+    })
+  }
+
+  def computeAllAntinodes(grid: List[List[Tile]], 
+                       all: List[Cell[Tile]]): Unit = { 
+    all.toSeq.combinations(2).map{case Seq(a,b) => (a,b)}.foreach((a,b) => {
+      grid.zipWithIndex.foreach((row, y) => { 
+        row.zipWithIndex.filter((c, x) => {
+          (b.x - a.x)*(y - a.y) - (b.y - a.y)*(x - a.x) == 0
+        })
+        .foreach((c,x) => {
+          c.isAntinode = true
+        })
       })
     })
   }
