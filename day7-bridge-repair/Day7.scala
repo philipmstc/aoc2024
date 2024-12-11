@@ -16,35 +16,17 @@ object Day7 {
   }
 
   def isExpressable(head: Long, tail: Array[Long]): Boolean = { 
-    isExpressableWithAdd(head, tail) || isExpressableWithProduct(head, tail) || isExpressableWithCat(head, tail)
+    isExpressableWith(head, tail, _+_) || 
+    isExpressableWith(head, tail, _*_) || 
+    isExpressableWith(head, tail, (h, t) => (t.toString + h.toString).toLong)
   }
 
-  def isExpressableWithAdd(head: Long, tail: Array[Long]): Boolean = { 
-    tail.size match 
+  def isExpressableWith(head: Long, tail: Array[Long], op: (Long, Long) => Long): Boolean = { 
+    tail.size match
       case 1 => head == tail(0)
       case x if x > 1 => {
         val newTail = tail.splitAt(1)
-        newTail(1)(0) = newTail(1)(0) + newTail(0)(0)
-        isExpressable(head, newTail(1))
-      }
-  }
-
-  def isExpressableWithProduct(head: Long, tail: Array[Long]): Boolean = {
-    tail.size match 
-      case 1 => head == tail(0)
-      case x if x > 1 => {
-        val newTail = tail.splitAt(1)
-        newTail(1)(0) = newTail(1)(0) * newTail(0)(0)
-        isExpressable(head, newTail(1))
-    }
-  }
-
-  def isExpressableWithCat(head: Long, tail: Array[Long]): Boolean = { 
-    tail.size match 
-      case 1 => head == tail(0)
-      case x if x > 1 => { 
-        val newTail = tail.splitAt(1)
-        newTail(1)(0) = (newTail(0)(0).toString + newTail(1)(0).toString).toLong
+        newTail(1)(0) = op(newTail(1)(0), newTail(0)(0))
         isExpressable(head, newTail(1))
       }
   }
