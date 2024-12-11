@@ -13,3 +13,5 @@ day 6 :star: :bug:
 day 7 :star: :star:
 
 day 8 :star: :star:
+
+day 9 :star: :poop:
