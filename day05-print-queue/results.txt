@@ -1,0 +1,83 @@
+----------
+4,1,2,2,5
+4 is in oMap
+Not everything is greater than 4
+1 is in oMap
+Not everything is greater than 1
+2 is in oMap
+Not everything is greater than 2
+2 is in oMap
+Not everything is greater than 2
+5 is in oMap
+Everything is greater than 5
+5
+4 is in oMap
+Everything is greater than 4
+1 is in oMap
+Not everything is greater than 1
+2 is in oMap
+Not everything is greater than 2
+2 is in oMap
+Not everything is greater than 2
+4
+1 is in oMap
+Not everything is greater than 1
+2 is in oMap
+Everything is greater than 2
+2 is in oMap
+Everything is greater than 2
+2 2
+- 2,2,1
+- 4,2,2,1
+- 5,4,2,2,1
+5,4,2,2,1
+----------
+3,4,1,0,1
+3 is in oMap
+Not everything is greater than 3
+4 is in oMap
+Everything is greater than 4
+1 is in oMap
+Not everything is greater than 1
+0 is not in oMap
+Everything is greater than 0
+1 is in oMap
+Not everything is greater than 1
+4 0
+3 is in oMap
+Everything is greater than 3
+1 is in oMap
+Not everything is greater than 1
+1 is in oMap
+Not everything is greater than 1
+3
+1 is in oMap
+Everything is greater than 1
+1 is in oMap
+Everything is greater than 1
++ 1,1
+- 3,1,1
+- 4,0,3,1,1
+4,0,3,1,1
+----------
+3,2,1,9,8
+3 is in oMap
+Everything is greater than 3
+2 is in oMap
+Not everything is greater than 2
+1 is in oMap
+Not everything is greater than 1
+9 is not in oMap
+Everything is greater than 9
+8 is not in oMap
+Everything is greater than 8
+3 9 8
+2 is in oMap
+Everything is greater than 2
+1 is in oMap
+Not everything is greater than 1
+2
+- 2,1
+- 3,9,8,2,1
+3,9,8,2,1
+13
