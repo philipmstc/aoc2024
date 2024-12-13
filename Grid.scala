@@ -1,4 +1,5 @@
 import scala.io.Source._
+import scala.math._
 
 class Cell[T](val t: T, val x: Int, val y: Int)
 
@@ -34,5 +35,32 @@ object Grid {
         .filter((t, x) => predicate(grid(y)(x)))
         .map((t,x) => Cell(grid(y)(x), x, y))
         ).flatten.toList
+  }
+
+  def orthoCandidates[T](graph: List[List[T]], current: Cell[T]): List[Cell[T]] = {
+    List(0, -1, 1)
+      .combinations(2)
+      .flatMap{case List(x,y) => List((x,y), (y,x))}
+      .filter((x,y)=> abs(x) != abs(y) && (y==0 || x==0))
+      .map((x, y) => get(graph)(current.x + x, current.y + y))
+      .filter(s => !s.isEmpty)
+      .map(s=>s.get)
+      .toList
+  }
+
+  def orthoDFS[T](graph: List[List[T]], 
+               current: Cell[T], 
+               candidate: (T, T) => Boolean,
+               action: T => Unit, 
+               debug: T => Unit = (t: T) => ()): List[List[T]] = { 
+    val neighbours: List[Cell[T]] = orthoCandidates(graph, current)
+    neighbours.filter(ct => candidate(current.t, ct.t))
+      .foreach(ct => 
+          action(ct.t)
+          debug(ct.t)
+          orthoDFS(graph, ct, candidate, action, debug)
+      )
+    graph
+
   }
 }
